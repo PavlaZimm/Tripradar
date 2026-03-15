@@ -5,9 +5,10 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 - **Krok 1**: Inicializace projektu — package.json, tsconfig.json, .gitignore, .env.local.example, postcss.config.mjs, SUMMARY.md
 - **Krok 2**: Design system — globals.css (Tailwind v4 @theme), fonts.ts (Cormorant Garamond + Outfit, latin-ext)
 - **Krok 3**: next.config.ts — security headers (CSP, X-Frame, XSS), AVIF+WebP images, withPayload
+- **Krok 4**: types/index.ts — ArticleFrontmatter, Article, Author, Category, Destination, EBook, MysteryTrip, Commerce typy, API response shapes
 
 ## 🔄 Aktuálně pracuji na
-- **Krok 4**: types/index.ts — TypeScript interfaces
+- **Krok 5**: lib/ utility soubory
 
 ## ⏳ Zbývá
 - Krok 3: next.config.ts (security headers, images, Payload)
@@ -38,6 +39,7 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 | `src/app/globals.css` | Tailwind v4 @theme — CSS custom properties, typografická škála, utility třídy |
 | `src/app/fonts.ts` | next/font — Cormorant Garamond (display) + Outfit (body), latin-ext |
 | `next.config.ts` | Security headers, AVIF+WebP image optimalizace, withPayload integrace |
+| `src/types/index.ts` | Všechny TypeScript interfaces — Article, Author, EBook, Commerce, API shapes |
 
 ## ⚙️ Prostředí
 - [ ] .env.local vytvořen
