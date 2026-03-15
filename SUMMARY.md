@@ -12,9 +12,11 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 - **Krok 8**: Layout — Header (sticky, dropdown nav, search), Footer (links, affiliate disclaimer), MobileNav (Sheet), root layout.tsx (OG metadata, Speculation Rules, skip-to-content)
 - **Krok 9**: Homepage — Hero (full-screen), FeaturedGrid (asymetrický 60/40), CategoryBar (scroll), ArticleGrid, MysteryTeaser (dark), EbookGrid, FAQ, WebSite JSON-LD
 - **Krok 10**: Article template — ArticleHero (LCP priority), TOC (sticky/collapsible), ReadingProgress, AffiliateBox, AuthorBox (EEAT), RelatedArticles, ArticleCard (sm/md/lg), Article+FAQ+BreadcrumbList JSON-LD
+- **Krok 11**: SEO komponenty — ArticleSchema (@graph), FAQSchema, BreadcrumbSchema, DestinationSchema (TouristDestination)
+- **Krok 12**: Commerce — /ebooks katalog, /ebooks/[slug] detail (Product JSON-LD), /mystery landing (SSG, testimonials, FAQ), /mystery/confirm
 
 ## 🔄 Aktuálně pracuji na
-- **Krok 11**: SEO komponenty
+- **Krok 13**: Stripe integrace
 
 ## ⏳ Zbývá
 - Krok 3: next.config.ts (security headers, images, Payload)
