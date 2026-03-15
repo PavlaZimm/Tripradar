@@ -5,14 +5,13 @@ import { importMap } from './importMap'
 
 type Args = {
   params: Promise<{ segments: string[] }>
+  searchParams: Promise<{ [key: string]: string | string[] }>
 }
 
-export async function generateMetadata({ params }: Args): Promise<Metadata> {
-  const resolvedParams = await params
-  return generatePageMetadata({ config, params: resolvedParams, importMap })
+export async function generateMetadata({ params, searchParams }: Args): Promise<Metadata> {
+  return generatePageMetadata({ config, params, searchParams })
 }
 
-export default async function Page({ params }: Args) {
-  const resolvedParams = await params
-  return RootPage({ config, params: resolvedParams, importMap })
+export default async function Page({ params, searchParams }: Args) {
+  return RootPage({ config, params, searchParams, importMap })
 }
