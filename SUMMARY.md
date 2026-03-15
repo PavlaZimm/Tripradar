@@ -3,9 +3,10 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 
 ## ✅ Hotovo
 - **Krok 1**: Inicializace projektu — package.json, tsconfig.json, .gitignore, .env.local.example, postcss.config.mjs, SUMMARY.md
+- **Krok 2**: Design system — globals.css (Tailwind v4 @theme), fonts.ts (Cormorant Garamond + Outfit, latin-ext)
 
 ## 🔄 Aktuálně pracuji na
-- **Krok 2**: Design system (globals.css, fonts.ts, Tailwind v4)
+- **Krok 3**: next.config.ts (security headers, images, Payload)
 
 ## ⏳ Zbývá
 - Krok 3: next.config.ts (security headers, images, Payload)
@@ -33,6 +34,8 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 | `.env.local.example` | Šablona všech environment proměnných |
 | `postcss.config.mjs` | PostCSS konfigurace pro Tailwind CSS v4 |
 | `SUMMARY.md` | Tento soubor — průběžný stav projektu |
+| `src/app/globals.css` | Tailwind v4 @theme — CSS custom properties, typografická škála, utility třídy |
+| `src/app/fonts.ts` | next/font — Cormorant Garamond (display) + Outfit (body), latin-ext |
 
 ## ⚙️ Prostředí
 - [ ] .env.local vytvořen

@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   TripRadar.cz — Design System
+   Tailwind CSS v4 — konfigurace přes @theme {}
+   ============================================================================= */
+
+@theme {
+  /* Barvy */
+  --color-bg-primary: #F5F0E8;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-dark: #1A1714;
+  --color-text-primary: #1F2933;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+  --color-accent-primary: #1C768F;
+  --color-accent-hover: #0F5B6E;
+  --color-accent-warm: #C4956A;
+  --color-accent-coral: #FF6F59;
+  --color-border: #E5DDD0;
+  --color-border-dark: #2E2B26;
+
+  /* Fonty */
+  --font-display: var(--font-cormorant), 'Georgia', serif;
+  --font-body: var(--font-outfit), 'Inter', sans-serif;
+
+  /* Breakpointy (Tailwind v4 defaults, explicitní pro přehlednost) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* =============================================================================
+   Base styles
+   ============================================================================= */
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Výchozí typografie pro rich text obsah */
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    font-family: var(--font-display);
+    color: var(--color-text-primary);
+  }
+
+  /* Plynulý scroll */
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus visible pro a11y */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* =============================================================================
+   Typografická škála — utility třídy
+   ============================================================================= */
+
+@layer utilities {
+  .text-display-xl {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 8vw, 96px);
+    line-height: 1.0;
+    font-weight: 300;
+  }
+
+  .text-display-lg {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1.05;
+    font-weight: 300;
+  }
+
+  .text-display-md {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 48px);
+    line-height: 1.1;
+    font-weight: 400;
+  }
+
+  .text-display-sm {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.5vw, 32px);
+    line-height: 1.2;
+    font-weight: 400;
+  }
+
+  .text-body-lg {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .text-body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .text-caption {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+  }
+
+  .text-overline {
+    font-family: var(--font-body);
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Pull quote — pro článkový obsah */
+  .pull-quote {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.3;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-accent-warm);
+    border-left: 3px solid var(--color-accent-warm);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  /* Full-bleed obrázky v článcích */
+  .full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  /* Gradient overlay pro hero sekce */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(26, 23, 20, 0.3) 50%,
+      rgba(26, 23, 20, 0.85) 100%
+    );
+  }
+
+  /* Dark sekce (Mystery Teaser) */
+  .section-dark {
+    background-color: var(--color-bg-dark);
+    color: var(--color-bg-primary);
+  }
+
+  /* Warm accent background */
+  .bg-warm {
+    background-color: var(--color-bg-primary);
+  }
+
+  /* Animace */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Reading progress bar */
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-accent-primary), var(--color-accent-warm));
+    z-index: 50;
+    transition: width 0.1s linear;
+  }
+}
