@@ -8,9 +8,10 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 - **Krok 4**: types/index.ts — ArticleFrontmatter, Article, Author, Category, Destination, EBook, MysteryTrip, Commerce typy, API response shapes
 - **Krok 5**: lib/ — utils.ts (cn, formatDate, formatPrice), supabase.ts (browser+server+admin), stripe.ts, ecomail.ts, resend.ts, validators.ts (Zod), payload.ts
 - **Krok 6**: Payload CMS — payload.config.ts, kolekce (Articles, Destinations, Categories, Authors, EBooks, MysteryTrips, Media), admin routes
+- **Krok 7**: shadcn/ui — components.json, Button (varianty), Card, Badge, Input, Separator, Dialog, Sheet (mobile nav), Tabs
 
 ## 🔄 Aktuálně pracuji na
-- **Krok 7**: shadcn/ui init + základní komponenty
+- **Krok 8**: Layout komponenty (Header, Footer, MobileNav)
 
 ## ⏳ Zbývá
 - Krok 3: next.config.ts (security headers, images, Payload)
