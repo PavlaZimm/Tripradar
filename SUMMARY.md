@@ -14,9 +14,10 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 - **Krok 10**: Article template — ArticleHero (LCP priority), TOC (sticky/collapsible), ReadingProgress, AffiliateBox, AuthorBox (EEAT), RelatedArticles, ArticleCard (sm/md/lg), Article+FAQ+BreadcrumbList JSON-LD
 - **Krok 11**: SEO komponenty — ArticleSchema (@graph), FAQSchema, BreadcrumbSchema, DestinationSchema (TouristDestination)
 - **Krok 12**: Commerce — /ebooks katalog, /ebooks/[slug] detail (Product JSON-LD), /mystery landing (SSG, testimonials, FAQ), /mystery/confirm
+- **Krok 13**: Stripe — checkout/ebook (req.text!), checkout/mystery (trial 7 dní), webhooks/stripe (4 events + Supabase upsert + Ecomail tagy), download/[id] (auth + purchase check + signed URL 60s)
 
 ## 🔄 Aktuálně pracuji na
-- **Krok 13**: Stripe integrace
+- **Krok 14**: Newsletter integrace
 
 ## ⏳ Zbývá
 - Krok 3: next.config.ts (security headers, images, Payload)
