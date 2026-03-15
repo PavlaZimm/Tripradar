@@ -1,7 +1,6 @@
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { nextJsFormStateAdapter } from '@payloadcms/next/form-state'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -107,6 +106,4 @@ export default buildConfig({
 
   // Lokalizace (budoucí rozšíření)
   // localization: { locales: ['cs'], defaultLocale: 'cs' },
-
-  formStateAdapter: nextJsFormStateAdapter,
 })
