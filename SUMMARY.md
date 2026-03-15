@@ -6,9 +6,10 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 - **Krok 2**: Design system — globals.css (Tailwind v4 @theme), fonts.ts (Cormorant Garamond + Outfit, latin-ext)
 - **Krok 3**: next.config.ts — security headers (CSP, X-Frame, XSS), AVIF+WebP images, withPayload
 - **Krok 4**: types/index.ts — ArticleFrontmatter, Article, Author, Category, Destination, EBook, MysteryTrip, Commerce typy, API response shapes
+- **Krok 5**: lib/ — utils.ts (cn, formatDate, formatPrice), supabase.ts (browser+server+admin), stripe.ts, ecomail.ts, resend.ts, validators.ts (Zod), payload.ts
 
 ## 🔄 Aktuálně pracuji na
-- **Krok 5**: lib/ utility soubory
+- **Krok 6**: Payload CMS kolekce a konfigurace
 
 ## ⏳ Zbývá
 - Krok 3: next.config.ts (security headers, images, Payload)
@@ -40,6 +41,13 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 | `src/app/fonts.ts` | next/font — Cormorant Garamond (display) + Outfit (body), latin-ext |
 | `next.config.ts` | Security headers, AVIF+WebP image optimalizace, withPayload integrace |
 | `src/types/index.ts` | Všechny TypeScript interfaces — Article, Author, EBook, Commerce, API shapes |
+| `src/lib/utils.ts` | cn(), formatDate, formatPrice, calculateReadingTime, blurDataUrl |
+| `src/lib/supabase.ts` | Browser + server + admin Supabase klienti, helpers (mystery sub, purchase) |
+| `src/lib/stripe.ts` | Stripe server client, MYSTERY_PRICES konstanty |
+| `src/lib/ecomail.ts` | subscribeToNewsletter(), addTagsToSubscriber() |
+| `src/lib/resend.ts` | Transakční emaily — ebook purchase, mystery sub, payment failed |
+| `src/lib/validators.ts` | Zod schémata — newsletter, ebook checkout, mystery checkout, download |
+| `src/lib/payload.ts` | Payload CMS Local API helpers — getArticleBySlug, getArticles, getEbooks… |
 
 ## ⚙️ Prostředí
 - [ ] .env.local vytvořen
