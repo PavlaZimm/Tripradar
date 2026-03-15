@@ -7,9 +7,10 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 - **Krok 3**: next.config.ts — security headers (CSP, X-Frame, XSS), AVIF+WebP images, withPayload
 - **Krok 4**: types/index.ts — ArticleFrontmatter, Article, Author, Category, Destination, EBook, MysteryTrip, Commerce typy, API response shapes
 - **Krok 5**: lib/ — utils.ts (cn, formatDate, formatPrice), supabase.ts (browser+server+admin), stripe.ts, ecomail.ts, resend.ts, validators.ts (Zod), payload.ts
+- **Krok 6**: Payload CMS — payload.config.ts, kolekce (Articles, Destinations, Categories, Authors, EBooks, MysteryTrips, Media), admin routes
 
 ## 🔄 Aktuálně pracuji na
-- **Krok 6**: Payload CMS kolekce a konfigurace
+- **Krok 7**: shadcn/ui init + základní komponenty
 
 ## ⏳ Zbývá
 - Krok 3: next.config.ts (security headers, images, Payload)
@@ -48,6 +49,16 @@ Poslední aktualizace: 2026-03-15 | Next.js: 15.x | Payload CMS: 3.x
 | `src/lib/resend.ts` | Transakční emaily — ebook purchase, mystery sub, payment failed |
 | `src/lib/validators.ts` | Zod schémata — newsletter, ebook checkout, mystery checkout, download |
 | `src/lib/payload.ts` | Payload CMS Local API helpers — getArticleBySlug, getArticles, getEbooks… |
+| `payload.config.ts` | Payload CMS config — DB (PostgreSQL), kolekce, CORS, secret |
+| `src/collections/Articles.ts` | Kolekce článků — Lexical editor, draft workflow, affiliate, FAQ, ISR hook |
+| `src/collections/Destinations.ts` | Kolekce destinací — hub pages |
+| `src/collections/Categories.ts` | Kolekce kategorií |
+| `src/collections/Authors.ts` | Kolekce autorů — EEAT: bio, credentials, sociální sítě |
+| `src/collections/EBooks.ts` | Kolekce e-booků — Stripe Price ID, file URL |
+| `src/collections/MysteryTrips.ts` | Kolekce mystery výletů — subscriber-only |
+| `src/collections/Media.ts` | Media library — alt, caption, credit, image sizes |
+| `src/app/(payload)/admin/[[...segments]]/page.tsx` | Payload admin panel route |
+| `src/app/(payload)/api/[...slug]/route.ts` | Payload REST API route |
 
 ## ⚙️ Prostředí
 - [ ] .env.local vytvořen
