@@ -21,7 +21,6 @@ export default buildConfig({
     user: 'users',
     meta: {
       titleSuffix: '— TripRadar Admin',
-      favicon: '/favicon.ico',
     },
     // Skupiny v levém panelu
     components: {},

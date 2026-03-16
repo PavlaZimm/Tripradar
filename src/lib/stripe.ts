@@ -3,7 +3,7 @@ import Stripe from 'stripe'
 // Stripe server client — POUZE server-side
 // Nikdy neimportovat do Client Components!
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-12-18.acacia',
+  apiVersion: '2024-06-20',
   typescript: true,
 })
 

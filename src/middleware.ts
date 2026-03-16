@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
 
 // Middleware: POUZE session refresh + route protection
 // Nesmí obsahovat security headers (ty jsou v next.config.ts)
@@ -20,7 +20,7 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll()
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: Array<{ name: string; value: string; options?: CookieOptions }>) {
           // Nastavíme cookies na request i response
           cookiesToSet.forEach(({ name, value }) => {
             request.cookies.set(name, value)

@@ -1,3 +1,4 @@
+import type { Where } from 'payload'
 import type { Article, Author, Category, Destination, EBook, MysteryTrip, PaginatedResult } from '@/types'
 
 // Payload CMS Local API — server-side only
@@ -39,11 +40,11 @@ export async function getArticles(options: {
 
   const payload = await getPayload()
 
-  const where: Record<string, unknown> = {
+  const where: Where = {
     status: { equals: 'published' },
   }
-  if (category) where['category.slug'] = { equals: category }
-  if (tag) where.tags = { contains: tag }
+  if (category) (where as Record<string, unknown>)['category.slug'] = { equals: category }
+  if (tag) (where as Record<string, unknown>).tags = { contains: tag }
 
   const result = await payload.find({
     collection: 'articles',
@@ -117,8 +118,8 @@ export async function getDestinationBySlug(slug: string): Promise<Destination | 
 // Načte e-booky
 export async function getEbooks(options: { limit?: number; featured?: boolean } = {}): Promise<EBook[]> {
   const payload = await getPayload()
-  const where: Record<string, unknown> = {}
-  if (options.featured) where.featured = { equals: true }
+  const where: Where = {}
+  if (options.featured) (where as Record<string, unknown>).featured = { equals: true }
 
   const result = await payload.find({
     collection: 'ebooks',
@@ -164,5 +165,5 @@ export async function getAllArticleSlugs(): Promise<string[]> {
     limit: 1000,
     depth: 0,
   })
-  return result.docs.map((doc: { slug: string }) => doc.slug)
+  return result.docs.map((doc) => (doc as unknown as { slug: string }).slug)
 }
