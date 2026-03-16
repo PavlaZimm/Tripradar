@@ -11,6 +11,11 @@ const SUBSCRIBER_ONLY_ROUTES = ['/mystery/content']
 export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
 
+  // Pokud nejsou nastaveny Supabase env proměnné, přeskočíme auth logiku
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return supabaseResponse
+  }
+
   // Vytvoř Supabase client s cookie accessem
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
