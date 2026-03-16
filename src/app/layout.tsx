@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { cormorant, outfit } from './fonts'
+import { fraunces, plusJakartaSans } from './fonts'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import './globals.css'
@@ -67,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="cs" className={`${cormorant.variable} ${outfit.variable}`}>
+    <html lang="cs" className={`${fraunces.variable} ${plusJakartaSans.variable}`}>
       <head>
         {/* Speculation Rules API — prefetch article pages pro near-instant navigaci */}
         <script

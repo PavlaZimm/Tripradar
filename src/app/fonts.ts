@@ -1,18 +1,18 @@
-import { Cormorant_Garamond, Outfit } from 'next/font/google'
+import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google'
 
 // Serif — nadpisy, hero, pull quotes (VŽDY latin-ext pro českou diakritiku!)
-export const cormorant = Cormorant_Garamond({
+export const fraunces = Fraunces({
   subsets: ['latin', 'latin-ext'],
   weight: ['300', '400', '600'],
   style: ['normal', 'italic'],
-  variable: '--font-cormorant',
+  variable: '--font-fraunces',
   display: 'swap',
 })
 
 // Sans-serif — UI, body text, metadata
-export const outfit = Outfit({
+export const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
   weight: ['300', '400', '500', '600'],
-  variable: '--font-outfit',
+  variable: '--font-plus-jakarta',
   display: 'swap',
 })

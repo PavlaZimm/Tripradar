@@ -7,22 +7,22 @@
 
 @theme {
   /* Barvy */
-  --color-bg-primary: #F5F0E8;
-  --color-bg-secondary: #FFFFFF;
-  --color-bg-dark: #1A1714;
-  --color-text-primary: #1F2933;
-  --color-text-secondary: #4B5563;
-  --color-text-muted: #9CA3AF;
-  --color-accent-primary: #1C768F;
-  --color-accent-hover: #0F5B6E;
-  --color-accent-warm: #C4956A;
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F7F7F5;
+  --color-bg-dark: #111010;
+  --color-text-primary: #18181B;
+  --color-text-secondary: #52525B;
+  --color-text-muted: #A1A1AA;
+  --color-accent-primary: #FF6F59;
+  --color-accent-hover: #E8573F;
+  --color-accent-warm: #FF6F59;
   --color-accent-coral: #FF6F59;
-  --color-border: #E5DDD0;
-  --color-border-dark: #2E2B26;
+  --color-border: #E4E4E7;
+  --color-border-dark: #27272A;
 
   /* Fonty */
-  --font-display: var(--font-cormorant), 'Georgia', serif;
-  --font-body: var(--font-outfit), 'Inter', sans-serif;
+  --font-display: var(--font-fraunces), 'Georgia', serif;
+  --font-body: var(--font-plus-jakarta), 'Inter', sans-serif;
 
   /* Breakpointy (Tailwind v4 defaults, explicitní pro přehlednost) */
   --breakpoint-sm: 640px;
