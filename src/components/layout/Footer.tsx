@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Separator } from '@/components/ui/separator'
 
 const footerLinks = {
   destinace: {
@@ -26,60 +25,47 @@ const footerLinks = {
       { label: 'O TripRadaru', href: '/o-nas' },
       { label: 'Autoři', href: '/autori' },
       { label: 'Kontakt', href: '/kontakt' },
-      { label: 'Inzerce', href: '/inzerce' },
     ],
   },
   pravni: {
     title: 'Právní',
     links: [
-      { label: 'Zásady ochrany dat', href: '/gdpr' },
+      { label: 'Ochrana dat', href: '/gdpr' },
       { label: 'Podmínky užití', href: '/podminky' },
-      { label: 'Cookies', href: '/cookies' },
-      { label: 'Affiliate disclaimer', href: '/affiliate' },
+      { label: 'Affiliate', href: '/affiliate' },
     ],
   },
 }
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg-primary)]">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-12 md:py-16">
-        {/* Logo + popis */}
-        <div className="mb-10 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-          <div className="max-w-xs">
-            <Link
-              href="/"
-              className="font-display text-display-md text-[var(--color-accent-warm)]"
-            >
+    <footer className="border-t border-[var(--color-border)] mt-20">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-14 md:py-20">
+
+        {/* Horní část — logo + linky */}
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-5 mb-14">
+          {/* Logo + tagline */}
+          <div className="col-span-2 sm:col-span-1">
+            <Link href="/" className="font-display text-xl text-[var(--color-text-primary)] hover:text-[var(--color-accent-primary)] transition-colors">
               TripRadar
             </Link>
-            <p className="mt-2 text-caption text-[var(--color-text-secondary)]">
-              Česky psaný travel magazín pro všechny cestovatele. Průvodci, tipy, mystery výlety a e-booky.
+            <p className="mt-3 text-xs text-[var(--color-text-muted)] leading-relaxed">
+              Česky psaný travel magazín pro všechny cestovatele.
             </p>
           </div>
 
-          {/* Affiliate disclaimer */}
-          <div className="max-w-sm rounded-sm border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-4">
-            <p className="text-caption text-[var(--color-text-muted)]">
-              <strong className="text-overline">Affiliate disclaimer:</strong>{' '}
-              Některé odkazy na tomto webu jsou affiliate. Pokud nakoupíte přes náš odkaz, dostaneme malou provizi bez dopadu na cenu pro vás.
-            </p>
-          </div>
-        </div>
-
-        {/* Linky */}
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {/* Linky */}
           {Object.entries(footerLinks).map(([key, section]) => (
             <div key={key}>
-              <h3 className="text-overline text-[var(--color-text-primary)] mb-3">
+              <h3 className="text-xs tracking-widest uppercase text-[var(--color-text-primary)] mb-4">
                 {section.title}
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-caption text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-colors"
+                      className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -90,17 +76,16 @@ export function Footer() {
           ))}
         </div>
 
-        <Separator className="my-8" />
-
-        {/* Copyright */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-caption text-[var(--color-text-muted)]">
-            © {new Date().getFullYear()} TripRadar.cz. Všechna práva vyhrazena.
+        {/* Spodní část */}
+        <div className="border-t border-[var(--color-border)] pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p className="text-xs text-[var(--color-text-muted)]">
+            © {new Date().getFullYear()} TripRadar.cz
           </p>
-          <p className="text-caption text-[var(--color-text-muted)]">
-            Analytika: Umami (GDPR-compliant, no cookies)
+          <p className="text-xs text-[var(--color-text-muted)]">
+            Některé odkazy jsou affiliate — cena pro vás se nemění.
           </p>
         </div>
+
       </div>
     </footer>
   )

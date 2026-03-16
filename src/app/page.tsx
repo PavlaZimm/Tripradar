@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { FeaturedGrid } from '@/components/sections/FeaturedGrid'
 import { ArticleGrid } from '@/components/sections/ArticleGrid'
 import { MysteryTeaser } from '@/components/sections/MysteryTeaser'
@@ -74,46 +71,42 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* 1. HERO — Full-screen */}
-      <section className="relative h-[85vh] min-h-[600px] max-h-[900px] overflow-hidden">
-        {/* Placeholder hero — v produkci z Payload CMS */}
-        <div className="absolute inset-0 bg-[var(--color-bg-dark)]">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(135deg, #1A1714 0%, #2E2B26 50%, #1C768F22 100%)',
-            }}
-          />
-        </div>
-        <div className="hero-overlay absolute inset-0" />
-
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-4 sm:px-6">
-          <Badge variant="secondary" className="mb-6 text-overline">
-            Travel magazín
-          </Badge>
-          <h1 className="text-display-xl text-[var(--color-bg-primary)] font-display max-w-4xl">
-            Svět čeká.
-            <br />
-            <em className="text-[var(--color-accent-warm)]">Kam vyrazíš?</em>
-          </h1>
-          <p className="mt-6 text-body-lg text-[var(--color-bg-primary)]/70 max-w-xl">
-            Průvodci, tipy a mystery výlety pro každého cestovatele.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
-            <Button asChild size="lg">
-              <Link href="/mystery">Objev mystery výlety</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
-              <Link href="/category/pruvodci">Prohlédnout průvodce</Link>
-            </Button>
+      {/* 1. HERO — Editorial, čistý */}
+      <section className="border-b border-[var(--color-border)]">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+          {/* Horní linka */}
+          <div className="flex items-center justify-between py-4 border-b border-[var(--color-border)]">
+            <span className="text-xs tracking-widest uppercase text-[var(--color-text-muted)]">Český travel magazín</span>
+            <span className="text-xs tracking-widest uppercase text-[var(--color-text-muted)]">
+              {new Date().toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </span>
           </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
-          <span className="text-overline">Scroll</span>
-          <div className="w-px h-8 bg-white/20" />
+          {/* Hlavní hero */}
+          <div className="py-16 md:py-24 lg:py-32 text-center">
+            <h1 className="font-display text-[clamp(56px,10vw,120px)] leading-[0.95] tracking-tight text-[var(--color-text-primary)] mb-8">
+              Svět čeká.
+              <br />
+              <em className="text-[var(--color-accent-primary)]">Kam vyrazíš?</em>
+            </h1>
+            <p className="text-lg text-[var(--color-text-secondary)] max-w-lg mx-auto mb-10 leading-relaxed">
+              Průvodci, tipy a mystery výlety pro každého cestovatele.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <Link
+                href="/mystery"
+                className="text-sm font-medium text-[var(--color-accent-primary)] hover:text-[var(--color-accent-hover)] transition-colors underline underline-offset-4"
+              >
+                Objev Mystery výlety →
+              </Link>
+              <Link
+                href="/category/pruvodci"
+                className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+              >
+                Prohlédnout průvodce
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -122,18 +115,17 @@ export default async function HomePage() {
         {featuredArticles.length > 0 && <FeaturedGrid articles={featuredArticles} />}
       </Suspense>
 
-      {/* 3. CATEGORY BAR — horizontální scroll */}
-      <section className="border-y border-[var(--color-border)] bg-[var(--color-bg-secondary)]">
+      {/* 3. CATEGORY BAR */}
+      <section className="border-b border-[var(--color-border)]">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="flex items-center gap-1 overflow-x-auto py-4 scrollbar-none">
+          <div className="flex items-center gap-6 overflow-x-auto py-3 scrollbar-none">
             {categories.map((cat) => (
               <Link
                 key={cat.href}
                 href={cat.href}
-                className="flex items-center gap-2 whitespace-nowrap rounded-sm px-4 py-2 text-overline text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-primary)] hover:text-[var(--color-text-primary)] transition-colors flex-shrink-0"
+                className="whitespace-nowrap text-xs tracking-widest uppercase text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors flex-shrink-0 py-1"
               >
-                <span>{cat.icon}</span>
-                <span>{cat.name}</span>
+                {cat.name}
               </Link>
             ))}
           </div>
