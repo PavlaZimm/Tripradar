@@ -49,7 +49,7 @@ function ArticleCard({ article }: { article: Article }) {
             alt={article.heroImage.alt}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-103"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             placeholder="blur"
             blurDataURL={blurDataUrl}
           />

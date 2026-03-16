@@ -34,7 +34,7 @@ export function FeaturedGrid({ articles }: FeaturedGridProps) {
                 alt={main.heroImage.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, 60vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-103"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 placeholder="blur"
                 blurDataURL={blurDataUrl}
                 priority
@@ -76,7 +76,7 @@ export function FeaturedGrid({ articles }: FeaturedGridProps) {
                     alt={article.heroImage.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-103"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     placeholder="blur"
                     blurDataURL={blurDataUrl}
                   />
