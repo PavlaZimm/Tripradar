@@ -106,6 +106,22 @@ export default async function HomePage() {
                 Prohlédnout průvodce
               </Link>
             </div>
+
+            {/* Stats strip */}
+            <div className="mt-16 pt-10 border-t border-[var(--color-border)] grid grid-cols-3 gap-8 max-w-sm mx-auto sm:max-w-md">
+              <div className="text-center">
+                <span className="block font-display text-4xl text-[var(--color-text-primary)] leading-none">150+</span>
+                <span className="block text-xs tracking-widest uppercase text-[var(--color-text-muted)] mt-2">průvodců</span>
+              </div>
+              <div className="text-center border-x border-[var(--color-border)]">
+                <span className="block font-display text-4xl text-[var(--color-text-primary)] leading-none">45</span>
+                <span className="block text-xs tracking-widest uppercase text-[var(--color-text-muted)] mt-2">zemí</span>
+              </div>
+              <div className="text-center">
+                <span className="block font-display text-4xl text-[var(--color-text-primary)] leading-none">12k+</span>
+                <span className="block text-xs tracking-widest uppercase text-[var(--color-text-muted)] mt-2">čtenářů</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
