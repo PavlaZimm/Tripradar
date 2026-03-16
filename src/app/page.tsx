@@ -36,10 +36,11 @@ const homepageFAQ: FAQItem[] = [
 ]
 
 const categories = [
-  { name: 'Evropa', icon: '🏛️', href: '/category/evropa' },
-  { name: 'Asie', icon: '🏯', href: '/category/asie' },
-  { name: 'Amerika', icon: '🗽', href: '/category/amerika' },
-  { name: 'Afrika', icon: '🦁', href: '/category/afrika' },
+  { name: 'Itálie', icon: '🍕', href: '/category/italie' },
+  { name: 'Francie', icon: '🥐', href: '/category/francie' },
+  { name: 'Španělsko', icon: '🌞', href: '/category/spanelsko' },
+  { name: 'Balkán', icon: '⛵', href: '/category/balkan' },
+  { name: 'Skandinávie', icon: '🌲', href: '/category/skandinavie' },
   { name: 'Tipy', icon: '💡', href: '/category/tipy' },
   { name: 'Průvodci', icon: '🗺️', href: '/category/pruvodci' },
   { name: 'Mystery', icon: '🔮', href: '/mystery' },
@@ -110,11 +111,11 @@ export default async function HomePage() {
             {/* Stats strip */}
             <div className="mt-16 pt-10 border-t border-[var(--color-border)] grid grid-cols-3 gap-8 max-w-sm mx-auto sm:max-w-md">
               <div className="text-center">
-                <span className="block font-display text-4xl text-[var(--color-text-primary)] leading-none">150+</span>
+                <span className="block font-display text-4xl text-[var(--color-text-primary)] leading-none">50+</span>
                 <span className="block text-xs tracking-widest uppercase text-[var(--color-text-muted)] mt-2">průvodců</span>
               </div>
               <div className="text-center border-x border-[var(--color-border)]">
-                <span className="block font-display text-4xl text-[var(--color-text-primary)] leading-none">45</span>
+                <span className="block font-display text-4xl text-[var(--color-text-primary)] leading-none">15</span>
                 <span className="block text-xs tracking-widest uppercase text-[var(--color-text-muted)] mt-2">zemí</span>
               </div>
               <div className="text-center">
