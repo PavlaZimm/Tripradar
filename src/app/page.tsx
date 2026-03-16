@@ -62,11 +62,11 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  // Paralelní data fetching
+  // Paralelní data fetching — fallback na prázdná data při buildu bez DB
   const [featuredResult, latestResult, featuredEbooks] = await Promise.all([
-    getArticles({ limit: 3 }),
-    getArticles({ limit: 6 }),
-    getEbooks({ featured: true, limit: 3 }),
+    getArticles({ limit: 3 }).catch(() => ({ docs: [] })),
+    getArticles({ limit: 6 }).catch(() => ({ docs: [] })),
+    getEbooks({ featured: true, limit: 3 }).catch(() => []),
   ])
 
   const featuredArticles = featuredResult.docs

@@ -20,13 +20,17 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllArticleSlugs()
-  return slugs.map((slug) => ({ slug }))
+  try {
+    const slugs = await getAllArticleSlugs()
+    return slugs.map((slug) => ({ slug }))
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const article = await getArticleBySlug(slug)
+  const article = await getArticleBySlug(slug).catch(() => null)
 
   if (!article) return {}
 

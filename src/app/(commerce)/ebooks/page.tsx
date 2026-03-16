@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default async function EbooksPage() {
-  const ebooks = await getEbooks({ limit: 20 })
+  const ebooks = await getEbooks({ limit: 20 }).catch(() => [])
 
   return (
     <div className="min-h-screen">

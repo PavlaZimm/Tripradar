@@ -15,13 +15,17 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const ebooks = await getEbooks({ limit: 100 })
-  return ebooks.map((ebook) => ({ slug: ebook.slug }))
+  try {
+    const ebooks = await getEbooks({ limit: 100 })
+    return ebooks.map((ebook) => ({ slug: ebook.slug }))
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const ebook = await getEbookBySlug(slug)
+  const ebook = await getEbookBySlug(slug).catch(() => null)
   if (!ebook) return {}
 
   return {
