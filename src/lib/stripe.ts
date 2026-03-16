@@ -2,10 +2,17 @@ import Stripe from 'stripe'
 
 // Stripe server client — POUZE server-side
 // Nikdy neimportovat do Client Components!
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
-  typescript: true,
-})
+// Lazy inicializace — neprovádí se při buildu, jen při skutečném volání
+let _stripe: Stripe | null = null
+export function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: '2024-06-20',
+      typescript: true,
+    })
+  }
+  return _stripe
+}
 
 // Price IDs pro Mystery předplatné
 export const MYSTERY_PRICES = {

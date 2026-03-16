@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { stripe, MYSTERY_PRICES } from '@/lib/stripe'
-import { createSupabaseServerClient } from '@/lib/supabase'
+import { getStripe, MYSTERY_PRICES } from '@/lib/stripe'
+import { createSupabaseServerClient } from '@/lib/supabase-server'
 import { mysteryCheckoutSchema } from '@/lib/validators'
 import { absoluteUrl } from '@/lib/utils'
 
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     const priceId = MYSTERY_PRICES[validated.data.interval]
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: 'subscription',
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: absoluteUrl('/mystery/confirm?session_id={CHECKOUT_SESSION_ID}'),

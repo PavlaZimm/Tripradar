@@ -1,6 +1,9 @@
 import { Resend } from 'resend'
 
-export const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy inicializace — neprovádí se při buildu, jen při skutečném volání
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY)
+}
 
 const FROM_EMAIL = 'TripRadar <noreply@tripradar.cz>'
 
@@ -13,7 +16,7 @@ export async function sendEbookPurchaseConfirmation(
     downloadUrl: string
   }
 ) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: FROM_EMAIL,
     to,
     subject: `Váš e-book: ${data.ebookTitle}`,
@@ -41,7 +44,7 @@ export async function sendMysterySubscriptionConfirmation(
   to: string,
   data: { name?: string; nextRevealDate: string }
 ) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: FROM_EMAIL,
     to,
     subject: 'Vítej v Mystery výletech! 🗺️',
@@ -67,7 +70,7 @@ export async function sendPaymentFailedNotification(
   to: string,
   data: { name?: string; updateUrl: string }
 ) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: FROM_EMAIL,
     to,
     subject: 'Problém s platbou — Mystery předplatné',

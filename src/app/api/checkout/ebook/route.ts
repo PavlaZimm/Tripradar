@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { stripe } from '@/lib/stripe'
-import { createSupabaseServerClient } from '@/lib/supabase'
+import { getStripe } from '@/lib/stripe'
+import { createSupabaseServerClient } from '@/lib/supabase-server'
 import { ebookCheckoutSchema } from '@/lib/validators'
 import { absoluteUrl } from '@/lib/utils'
 
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser()
 
     // Vytvoř Checkout Session
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: 'payment',
       line_items: [{ price: validated.data.priceId, quantity: 1 }],
       success_url: `${absoluteUrl(`/ebooks/${validated.data.slug}`)}?success=1&session_id={CHECKOUT_SESSION_ID}`,

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import type Stripe from 'stripe'
-import { stripe, STRIPE_WEBHOOK_SECRET } from '@/lib/stripe'
-import { createSupabaseAdminClient } from '@/lib/supabase'
+import { getStripe, STRIPE_WEBHOOK_SECRET } from '@/lib/stripe'
+import { createSupabaseAdminClient } from '@/lib/supabase-server'
 import {
   sendEbookPurchaseConfirmation,
   sendMysterySubscriptionConfirmation,
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
   let event: Stripe.Event
   try {
-    event = stripe.webhooks.constructEvent(body, sig, STRIPE_WEBHOOK_SECRET)
+    event = getStripe().webhooks.constructEvent(body, sig, STRIPE_WEBHOOK_SECRET)
   } catch (err) {
     console.error('Stripe webhook signature verification failed:', err)
     return NextResponse.json({ error: 'Neplatný podpis.' }, { status: 400 })
@@ -94,7 +94,7 @@ export async function POST(req: NextRequest) {
 
         // Pokud je nové předplatné — odeslat uvítací e-mail
         if (subscription.status === 'active' && event.data.previous_attributes?.status === 'trialing') {
-          const customer = await stripe.customers.retrieve(subscription.customer as string) as Stripe.Customer
+          const customer = await getStripe().customers.retrieve(subscription.customer as string) as Stripe.Customer
           if (customer.email) {
             await sendMysterySubscriptionConfirmation(customer.email, {
               nextRevealDate: '1. příštího měsíce',
@@ -122,7 +122,7 @@ export async function POST(req: NextRequest) {
       // -------------------------------------------------------------------------
       case 'invoice.payment_failed': {
         const invoice = event.data.object as Stripe.Invoice
-        const customer = await stripe.customers.retrieve(invoice.customer as string) as Stripe.Customer
+        const customer = await getStripe().customers.retrieve(invoice.customer as string) as Stripe.Customer
         if (customer.email) {
           await sendPaymentFailedNotification(customer.email, {
             updateUrl: absoluteUrl('/account'),
