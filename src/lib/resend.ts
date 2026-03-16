@@ -1,11 +1,12 @@
-import { Resend } from 'resend'
-
-// Lazy inicializace — neprovádí se při buildu, jen při skutečném volání
-function getResend() {
-  return new Resend(process.env.RESEND_API_KEY)
-}
+// Resend emaily — POUZE server-side
+// Dynamic import zabraňuje pádu při buildu bez RESEND_API_KEY
 
 const FROM_EMAIL = 'TripRadar <noreply@tripradar.cz>'
+
+async function createResend() {
+  const { Resend } = await import('resend')
+  return new Resend(process.env.RESEND_API_KEY)
+}
 
 // Potvrzení nákupu e-booku
 export async function sendEbookPurchaseConfirmation(
@@ -16,7 +17,8 @@ export async function sendEbookPurchaseConfirmation(
     downloadUrl: string
   }
 ) {
-  return getResend().emails.send({
+  const resend = await createResend()
+  return resend.emails.send({
     from: FROM_EMAIL,
     to,
     subject: `Váš e-book: ${data.ebookTitle}`,
@@ -44,10 +46,11 @@ export async function sendMysterySubscriptionConfirmation(
   to: string,
   data: { name?: string; nextRevealDate: string }
 ) {
-  return getResend().emails.send({
+  const resend = await createResend()
+  return resend.emails.send({
     from: FROM_EMAIL,
     to,
-    subject: 'Vítej v Mystery výletech! 🗺️',
+    subject: 'Vítej v Mystery výletech!',
     html: `
       <h2>Předplatné aktivováno!</h2>
       <p>${data.name ? `Ahoj ${data.name},` : 'Ahoj,'}</p>
@@ -70,7 +73,8 @@ export async function sendPaymentFailedNotification(
   to: string,
   data: { name?: string; updateUrl: string }
 ) {
-  return getResend().emails.send({
+  const resend = await createResend()
+  return resend.emails.send({
     from: FROM_EMAIL,
     to,
     subject: 'Problém s platbou — Mystery předplatné',
