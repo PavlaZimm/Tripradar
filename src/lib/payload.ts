@@ -167,3 +167,65 @@ export async function getAllArticleSlugs(): Promise<string[]> {
   })
   return result.docs.map((doc) => (doc as unknown as { slug: string }).slug)
 }
+
+// Pro sitemap — vrátí slug + data poslední změny
+export async function getAllArticlesForSitemap(): Promise<
+  { slug: string; date: string; updatedDate?: string }[]
+> {
+  try {
+    const payload = await getPayload()
+    const result = await payload.find({
+      collection: 'articles',
+      where: { status: { equals: 'published' } },
+      limit: 5000,
+      depth: 0,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      select: { slug: true, date: true, updatedDate: true } as any,
+    })
+    return result.docs.map((doc) => {
+      const d = doc as unknown as { slug: string; date: string; updatedDate?: string }
+      return { slug: d.slug, date: d.date, updatedDate: d.updatedDate }
+    })
+  } catch {
+    return []
+  }
+}
+
+// Pro sitemap — všechny ebook slugy + data
+export async function getAllEbooksForSitemap(): Promise<
+  { slug: string; updatedAt?: string }[]
+> {
+  try {
+    const payload = await getPayload()
+    const result = await payload.find({
+      collection: 'ebooks',
+      limit: 500,
+      depth: 0,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      select: { slug: true, updatedAt: true } as any,
+    })
+    return result.docs.map((doc) => {
+      const d = doc as unknown as { slug: string; updatedAt?: string }
+      return { slug: d.slug, updatedAt: d.updatedAt }
+    })
+  } catch {
+    return []
+  }
+}
+
+// Pro sitemap — všechny kategorie
+export async function getAllCategoriesForSitemap(): Promise<{ slug: string }[]> {
+  try {
+    const payload = await getPayload()
+    const result = await payload.find({
+      collection: 'categories',
+      limit: 200,
+      depth: 0,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      select: { slug: true } as any,
+    })
+    return result.docs.map((doc) => ({ slug: (doc as unknown as { slug: string }).slug }))
+  } catch {
+    return []
+  }
+}

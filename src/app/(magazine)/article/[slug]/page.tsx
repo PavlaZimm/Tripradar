@@ -34,28 +34,41 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!article) return {}
 
+  const canonical = absoluteUrl(`/article/${slug}`)
+  const ogImage = {
+    url: article.heroImage.url,
+    width: 1200,
+    height: 630,
+    alt: article.heroImage.alt,
+  }
+
   return {
     title: article.title,
     description: article.description,
+    keywords: article.tags ?? [],
     robots: article.noIndex ? 'noindex,nofollow' : 'index,follow',
+    authors: [{ name: article.author.name, url: absoluteUrl(`/author/${article.author.slug}`) }],
     openGraph: {
       title: article.title,
       description: article.description,
-      images: [
-        {
-          url: article.heroImage.url,
-          width: 1200,
-          height: 630,
-          alt: article.heroImage.alt,
-        },
-      ],
+      images: [ogImage],
       type: 'article',
       publishedTime: formatDateISO(article.date),
-      modifiedTime: article.updatedDate ? formatDateISO(article.updatedDate) : undefined,
-      authors: [`${absoluteUrl(`/author/${article.author.slug}`)}`],
+      modifiedTime: article.updatedDate ? formatDateISO(article.updatedDate) : formatDateISO(article.date),
+      authors: [absoluteUrl(`/author/${article.author.slug}`)],
+      section: article.category.name,
+      tags: article.tags ?? [],
+      locale: 'cs_CZ',
+      siteName: 'TripRadar',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.description,
+      images: [ogImage.url],
     },
     alternates: {
-      canonical: absoluteUrl(`/article/${slug}`),
+      canonical,
     },
   }
 }
@@ -78,13 +91,19 @@ export default async function ArticlePage({ params }: Props) {
   // Placeholder pro scaffolding:
   const tocItems: { id: string; text: string; level: number }[] = []
 
-  // Article JSON-LD
+  // Article JSON-LD — rozšířené schema pro Google
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
     description: article.description,
-    image: article.heroImage.url,
+    image: {
+      '@type': 'ImageObject',
+      url: article.heroImage.url,
+      width: 1200,
+      height: 630,
+    },
+    inLanguage: 'cs',
     datePublished: formatDateISO(article.date),
     dateModified: article.updatedDate
       ? formatDateISO(article.updatedDate)
@@ -101,9 +120,17 @@ export default async function ArticlePage({ params }: Props) {
       logo: {
         '@type': 'ImageObject',
         url: 'https://tripradar.cz/logo.png',
+        width: 512,
+        height: 512,
       },
     },
-    mainEntityOfPage: absoluteUrl(`/article/${slug}`),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': absoluteUrl(`/article/${slug}`),
+    },
+    articleSection: article.category.name,
+    ...(article.tags && article.tags.length > 0 && { keywords: article.tags.join(', ') }),
+    ...(article.readingTime && { timeRequired: `PT${article.readingTime}M` }),
   }
 
   // FAQ JSON-LD (pokud existuje)

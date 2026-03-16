@@ -155,16 +155,18 @@ export default async function HomePage() {
         <FAQ items={homepageFAQ} title="Nejčastější dotazy" />
       </div>
 
-      {/* JSON-LD WebSite schema */}
+      {/* JSON-LD: WebSite schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
+            '@id': 'https://tripradar.cz/#website',
             name: 'TripRadar',
             url: 'https://tripradar.cz',
             description: 'Česky psaný travel magazín pro všechny cestovatele.',
+            inLanguage: 'cs',
             potentialAction: {
               '@type': 'SearchAction',
               target: {
@@ -173,15 +175,34 @@ export default async function HomePage() {
               },
               'query-input': 'required name=search_term_string',
             },
-            publisher: {
-              '@type': 'Organization',
-              name: 'TripRadar',
-              url: 'https://tripradar.cz',
-              logo: {
-                '@type': 'ImageObject',
-                url: 'https://tripradar.cz/logo.png',
-              },
+          }),
+        }}
+      />
+      {/* JSON-LD: Organization schema — důležité pro Google Knowledge Panel */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            '@id': 'https://tripradar.cz/#organization',
+            name: 'TripRadar',
+            url: 'https://tripradar.cz',
+            logo: {
+              '@type': 'ImageObject',
+              '@id': 'https://tripradar.cz/#logo',
+              url: 'https://tripradar.cz/logo.png',
+              width: 512,
+              height: 512,
+              caption: 'TripRadar',
             },
+            sameAs: [
+              'https://www.instagram.com/tripradar.cz',
+              'https://www.facebook.com/tripradar.cz',
+              'https://www.pinterest.com/tripradarcz',
+            ],
+            foundingDate: '2024',
+            description: 'Česky psaný travel magazín pro všechny cestovatele.',
           }),
         }}
       />
